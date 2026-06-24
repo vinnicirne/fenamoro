@@ -1,0 +1,23 @@
+node_modules/
+.next/
+dist/
+.expo/
+*.local
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
+*.pem
+
+# Archives
+Feconecta.rar
+newfeconecta-main.zip
+# APK files
+*.apk
+
+# Java Crash Logs
+hs_err_pid*.log
+replay_pid*.log
+. t e m p /  
+apps/fenamoro/  
+ 

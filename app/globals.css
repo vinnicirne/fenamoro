@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+/* ─── Design Tokens FéNamoro ─────────────────────────────────────── */
+:root {
+  --color-green:     #25D366;
+  --color-teal:      #128C7E;
+  --color-dark-teal: #075E54;
+  --color-chat-bg:   #EFEAE2;
+  --color-light-bg:  #F0F2F5;
+  --color-dark:      #111B21;
+  --color-dark-mid:  #202C33;
+  --color-dark-card: #2A3942;
+
+  /* Gradient premium */
+  --premium-gradient: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: #111B21;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar Premium ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2A3942; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #128C7E; }
+
+/* ─── Components ─────────────────────────────────────────────────── */
+@layer components {
+
+  /* Botão primário - CTA principal */
+  .btn-primary {
+    @apply w-full bg-whatsapp-green hover:bg-[#20bd5a] active:scale-95
+           text-white font-semibold font-jakarta rounded-2xl py-4
+           flex items-center justify-center gap-2.5
+           transition-all duration-200
+           shadow-glow-green;
+  }
+
+  /* Botão secundário - glass */
+  .btn-glass {
+    @apply w-full bg-white/5 hover:bg-white/10 active:scale-95
+           border border-white/10 hover:border-whatsapp-green/40
+           text-white font-medium font-jakarta rounded-2xl py-4
+           flex items-center justify-center gap-2.5
+           transition-all duration-200 backdrop-blur-sm;
+  }
+
+  /* Botão premium (gradient) */
+  .btn-premium {
+    @apply w-full bg-premium-gradient hover:opacity-90 active:scale-95
+           text-white font-semibold font-jakarta rounded-2xl py-4
+           flex items-center justify-center gap-2.5
+           transition-all duration-200
+           shadow-premium;
+  }
+
+  /* Card glass */
+  .card-glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10
+           rounded-3xl shadow-glass;
+  }
+
+  /* Card dark */
+  .card-dark {
+    @apply bg-whatsapp-darkMid border border-white/5
+           rounded-3xl shadow-card;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10
+           rounded-2xl px-4 py-3.5
+           text-white placeholder:text-white/30 text-sm
+           outline-none focus:border-whatsapp-teal/60
+           focus:ring-2 focus:ring-whatsapp-teal/20
+           transition-all duration-200;
+  }
+
+  /* Badge verificado */
+  .badge-verified {
+    @apply inline-flex items-center gap-1 px-2.5 py-1
+           bg-whatsapp-teal/20 border border-whatsapp-teal/30
+           text-whatsapp-green text-xs font-semibold font-jakarta
+           rounded-full;
+  }
+
+  /* Badge denominação */
+  .badge-denomination {
+    @apply inline-flex items-center gap-1 px-3 py-1.5
+           bg-white/5 border border-white/10
+           text-white/70 text-xs font-medium font-jakarta
+           rounded-full;
+  }
+
+  /* Onda sonora (animação) */
+  .waveform-bar {
+    @apply w-1 rounded-full bg-whatsapp-green;
+    animation: waveform 1.2s ease-in-out infinite;
+  }
+
+  /* Action button (swipe) */
+  .action-btn {
+    @apply w-16 h-16 rounded-full flex items-center justify-center
+           border-2 transition-all duration-200 active:scale-90;
+  }
+
+  .action-btn-pass {
+    @apply action-btn border-fe-rose/60 bg-fe-rose/10 hover:bg-fe-rose/20;
+  }
+
+  .action-btn-orar {
+    @apply w-20 h-20 rounded-full flex items-center justify-center
+           bg-whatsapp-green shadow-glow-green active:scale-90
+           transition-all duration-200 hover:bg-[#20bd5a];
+  }
+
+  .action-btn-super {
+    @apply action-btn border-fe-gold/60 bg-fe-gold/10 hover:bg-fe-gold/20;
+  }
+
+  /* Chat bubble */
+  .bubble-sent {
+    @apply bg-whatsapp-teal text-white rounded-2xl rounded-br-sm
+           px-4 py-2.5 max-w-[75%] text-sm font-manrope ml-auto;
+  }
+
+  .bubble-received {
+    @apply bg-white text-gray-800 rounded-2xl rounded-bl-sm
+           px-4 py-2.5 max-w-[75%] text-sm font-manrope;
+  }
+
+  /* Secção Título */
+  .section-title {
+    @apply text-white font-outfit font-bold text-2xl;
+  }
+
+  /* Timer de decisão */
+  .decision-timer {
+    @apply flex items-center gap-2 px-4 py-2.5
+           bg-whatsapp-darkCard border border-whatsapp-teal/20
+           rounded-2xl text-sm font-jakarta text-white/70;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Gradiente de texto */
+  .text-gradient-green {
+    @apply bg-gradient-to-r from-whatsapp-green to-whatsapp-teal
+           bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-fe-gold to-orange-400
+           bg-clip-text text-transparent;
+  }
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────────── */
+@keyframes waveform {
+  0%, 100% { height: 4px; }
+  50%       { height: 20px; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes heartPop {
+  0%   { transform: scale(0) rotate(-30deg); }
+  70%  { transform: scale(1.3) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes ringExpand {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Chat background pattern */
+.chat-bg {
+  background-color: #EFEAE2;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23075E54' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
