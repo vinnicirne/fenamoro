@@ -7,9 +7,9 @@ export default function ProfileCardMedia() {
 
   return (
     <>
-      <div className={`relative h-72 ${profile.main_photo ? "bg-black" : `bg-gradient-to-br ${profile.gradient}`} flex items-center justify-center overflow-hidden`}>
-        {profile.main_photo ? (
-          <img src={profile.main_photo} alt={profile.name} className="absolute inset-0 w-full h-full object-cover opacity-90" />
+      <div className={`relative h-72 ${profile.photos && profile.photos[0] ? "bg-black" : `bg-gradient-to-br ${profile.gradient}`} flex items-center justify-center overflow-hidden`}>
+        {profile.photos && profile.photos[0] ? (
+          <img src={profile.photos[0]} alt={profile.name} className="absolute inset-0 w-full h-full object-cover opacity-90" />
         ) : (
           <div className="flex flex-col items-center gap-3 relative z-10">
             <span className="text-7xl">{profile.emoji}</span>

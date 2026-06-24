@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ChevronLeft, MoreVertical, Send, ShieldAlert, LockKeyhole } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 export default function ChatPage() {
   const router = useRouter();
