@@ -6,7 +6,9 @@ import { supabase } from "@/lib/supabase";
 import { Heart, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-export default function SSOCallbackPage() {
+import { Suspense } from "react";
+
+function SSOCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);
@@ -83,5 +85,19 @@ export default function SSOCallbackPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function SSOCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-dvh flex flex-col items-center justify-center bg-[#0a1f1c] relative overflow-hidden">
+        <div className="relative z-10 flex flex-col items-center">
+          <Loader2 className="w-8 h-8 animate-spin text-white" />
+        </div>
+      </div>
+    }>
+      <SSOCallbackContent />
+    </Suspense>
   );
 }
