@@ -1,12 +1,16 @@
-import * as nsfwjs from 'nsfwjs';
+// NsfwScanner usa import dinâmico para evitar erro de webpack
+// O nsfwjs usa require() dinâmico internamente que não é analisável em build time
 
 // Singleton instance to avoid reloading the model
-let modelInstance: nsfwjs.NSFWJS | null = null;
+let modelInstance: any | null = null;
 
 export const loadNsfwModel = async () => {
   if (!modelInstance) {
     try {
-      // Carrega o modelo padrao hospedado em CDN (MobileNetV2)
+      // webpackIgnore: true => webpack não tenta analisar nem bundlar o nsfwjs
+      // O módulo é resolvido exclusivamente em runtime no browser
+      const nsfwjs = await import(/* webpackIgnore: true */ 'nsfwjs');
+      // Carrega o modelo padrão hospedado em CDN (MobileNetV2)
       modelInstance = await nsfwjs.load();
     } catch (error) {
       console.error("Erro ao carregar o modelo de IA:", error);
@@ -18,7 +22,7 @@ export const loadNsfwModel = async () => {
 
 export const scanImageForNsfw = async (imageElement: HTMLImageElement): Promise<boolean> => {
   const model = await loadNsfwModel();
-  
+
   // Realiza a classificacao
   const predictions = await model.classify(imageElement);
   console.log("NSFW Predictions:", predictions);
