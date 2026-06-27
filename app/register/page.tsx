@@ -79,10 +79,16 @@ function RegisterForm() {
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
+      // Check if running in Capacitor native app
+      const isNative = typeof window !== 'undefined' && (window as any).Capacitor?.isNativePlatform();
+      const redirectUrl = isNative 
+        ? 'fenamoro://login-callback' 
+        : `${window.location.origin}`;
+
       const { error } = await supabase.auth.signInWithOAuth({ 
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}`
+          redirectTo: redirectUrl
         }
       });
       if (error) throw error;
